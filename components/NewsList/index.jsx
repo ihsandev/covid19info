@@ -28,8 +28,11 @@ const Box = styled.article`
             display: block;
             margin-bottom: 1rem;
         }
-        h2 {
-            margin-bottom: 0.5rem;
+        h2.title {
+            cursor: pointer;
+            &:hover {
+                color: #bb3535;
+            }
         }
     }
     @media only screen and (max-width: 600px) {
@@ -45,12 +48,6 @@ const Box = styled.article`
             height: 120px;
         }
             margin-right: 1rem;
-        }
-        h2.title {
-            cursor: pointer;
-            &:hover {
-                color: #bb3535;
-            }
         }
         p {
             font-size: 0.8em;
