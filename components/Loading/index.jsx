@@ -23,9 +23,8 @@ const animation = keyframes`
 `
 
 const StyleLoad = styled.div`
-    display: grid;
-    justify-content: center;
-    width: 100%;
+    display: grid !important;
+    justify-content: center !important;
     .lds-heart {
         display: inline-block;
         position: relative;
