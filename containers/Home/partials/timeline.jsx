@@ -28,7 +28,7 @@ const WrapTimeLine = styled.div`
    @media only screen and (max-width: 600px) {
      grid-template-columns : 1fr;
      grid-template-rows: 1fr 1fr;
-     grid-gap: 1rem;
+     grid-row-gap: 1.5rem;
      margin-bottom: 4rem;
    }
 `
@@ -46,6 +46,11 @@ const TimeLineTitle = styled.div`
       &:hover {
         color: #bb3535;
       }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    > h1 {
+      font-size: 1em;
     }
   }
 `
