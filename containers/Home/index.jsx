@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../layouts'
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 import Card from '../../components/Card'
 import styled from 'styled-components'
+import { getNewsCovid } from '../../config/actions'
+import TimeLine from './partials/timeline'
 
 const CardGlobal = styled.section`
   margin-bottom: 2rem;
@@ -36,6 +38,19 @@ const CardGlobal = styled.section`
 `
 
 const HomePage = ({ covid, indo }) => {
+
+  const [newsData, setNewsData] = useState([])
+  const [page, setPage] = useState(1)
+  // const [loadingMore, setLoadingMore] = useState(false)
+
+  useEffect(() => {
+      getNewsCovid(page)
+          .then((data) => {
+              setNewsData(data)
+          })
+  },[page])
+
+
     return (
         <Layout>
             <Head>
@@ -76,6 +91,9 @@ const HomePage = ({ covid, indo }) => {
                   />
                 </div>
             </CardGlobal>
+            <TimeLine 
+              newsData={newsData} 
+            />
         </Layout>
     )
 }

@@ -27,9 +27,13 @@ const Box = styled.article`
         span {
             display: block;
             margin-bottom: 1rem;
+            font-size: 0.8em;
+            color: #7c7c7c;
+            font-weight: bolder;
         }
         h2.title {
             cursor: pointer;
+            margin-bottom: 0.7rem;
             &:hover {
                 color: #bb3535;
             }

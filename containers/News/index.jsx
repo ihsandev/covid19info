@@ -3,8 +3,7 @@ import Layout from '../layouts'
 import Head from 'next/head'
 import NewsList from '../../components/NewsList'
 import styled from 'styled-components'
-import axios from 'axios'
-import cheerio from 'cheerio'
+import { getNewsCovid } from '../../config/actions'
 import Loading from '../../components/Loading'
 
 const WrapList = styled.div`
@@ -46,35 +45,13 @@ const NewsPage = () => {
     const [page, setPage] = useState(1)
     const [loadingMore, setLoadingMore] = useState(false)
 
-    const getNewsCovid = () => {
-        setLoadingMore(true)
-        axios.get(`https://www.detik.com/tag/news/virus-corona/?sortby=time&page=${page}`)
-        .then((res) => {
-            if(res.status === 200) {
-                setLoadingMore(true)
-                const html = res.data;
-                const $ = cheerio.load(html)
-                let newsList = []
-                $('.list article').each(function(i, elm) {
-                    newsList[i] = {
-                        title: $(this).find('h2.title').text().trim(),
-                        url: $(this).find('a').attr('href'),
-                        img: $(this).find('img').attr('src'),
-                        date: $(this).find('.date').text().trim(),
-                        desc: $(this).find('p').text().trim()
-                    }
-                })
-                const newsListTrim = newsList.filter(n => n != undefined)
-                // const toJson = JSON.stringify(newsListTrim, null, 4)
-                setNewsData(newsListTrim)
-            }
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoadingMore(false))
-    }
-
     useEffect(() => {
-        getNewsCovid()
+        setLoadingMore(true)
+        getNewsCovid(page)
+            .then((data) => {
+                setNewsData(data)
+            })
+            .finally(() => setLoadingMore(false))
     },[page])
 
     const handleNext = () => {
