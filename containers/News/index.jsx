@@ -85,7 +85,7 @@ const NewsPage = () => {
         setPage(page - 1)
     };
 
-    console.log('newsdata', newsData)
+    // console.log('newsdata', newsData)
 
     return (
     <Layout>

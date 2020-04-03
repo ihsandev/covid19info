@@ -29,6 +29,8 @@ const AboutPage = () => (
             <span>Github: <Url onClick={() => window.open('https://github.com/ihsandev')}>@ihsandev</Url></span>
             <br />
             <span>WA: 082348635212</span>
+            <br />
+            <span>Email: ihksansanhas@gmail.com</span>
         </div>
         <div style={{marginTop: 20}}>
             <div>Source API :</div>
