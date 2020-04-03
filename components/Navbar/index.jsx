@@ -5,12 +5,14 @@ import { useRouter } from 'next/router'
 
 const Header = styled.header`
   background-color: #232323;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
   @media only screen and (max-width: 600px) {
-    position: fixed;
-    right: 0;
-    left: 0;
+    top: auto;
     bottom: 0;
-    z-index: 999;
     display: flex;
     justify-content: center;
   }
