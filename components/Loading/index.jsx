@@ -59,6 +59,12 @@ const StyleLoad = styled.div`
         top: -24px;
         border-radius: 50% 50% 0 0;
     }
+    @media only screen and (max-width: 600px) {
+        display: grid !important;
+        justify-content: center !important;
+        width: 100%;
+        text-align:center;
+    }
 `
 
 const Loading = () => {
