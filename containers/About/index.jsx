@@ -31,7 +31,7 @@ const AboutPage = () => (
         </div>
         <div style={{marginTop: 20}}>
             <div>Source API :</div>
-            <div>https://github.com/mathdroid/covid-19-api</div>
+            <Url onClick={() => window.open('https://github.com/mathdroid/covid-19-api')}>https://github.com/mathdroid/covid-19-api</Url>
         </div>
     </Layout>
 )
