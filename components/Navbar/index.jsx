@@ -24,6 +24,14 @@ const Navigation = styled.nav`
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
+  .brand-title {
+    a {
+      text-decoration: none;
+      span {
+        color: #fff;
+      }
+    }
+  }
   h1 {
     color: #bb3535;
   }
@@ -85,8 +93,12 @@ const Navbar = () => {
     return (
 			<Header>
 				<Navigation>
-          <div>
-            <h1>Covid19Info</h1>
+          <div className="brand-title">
+            <Link href="/">
+              <a>
+                <h1>Covid<span>ku</span></h1>
+              </a>
+            </Link>
           </div>
 					<ul>	
 						<li className={pathname === '/' ? 'active' : ''}>
