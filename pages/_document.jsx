@@ -19,6 +19,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
             <meta charSet="UTF-8" />
+            <meta name="dicoding:email" content="ihksansanhas@gmail.com" />
             <meta name="keywords" content="Covid,Covid19,Corona Virus,Virus"/>
             <meta name="description" content="All about Corona Virus"/>
             <meta name="author" content="Ihsandev"/>
