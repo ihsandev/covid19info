@@ -3,9 +3,11 @@ import Layout from '../layouts'
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 import Card from '../../components/Card'
+import Select from '../../components/Select'
 import styled from 'styled-components'
-import { getNewsCovid } from '../../config/actions'
+import { getNewsCovid, getCovidData } from '../../config/actions'
 import TimeLine from './partials/timeline'
+
 
 const CardGlobal = styled.section`
   margin-bottom: 2rem;
@@ -37,10 +39,30 @@ const CardGlobal = styled.section`
   }
 `
 
-const HomePage = ({ covid, indo }) => {
+const ChooseCountry = styled.div`
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  @media only screen and (max-width: 600px) {
+    h2 {
+      font-size: 1em;
+      margin-bottom: 0.5rem;
+    }
+    padding-right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`
+
+const HomePage = ({ covid, country }) => {
 
   const [newsData, setNewsData] = useState([])
   const [page, setPage] = useState(1)
+  const [countryIso, setCountryIso] = useState('IDN')
+  const [countryName, setCountryName] = useState('Indonesia')
+  const [randomCountry, setRandomCountry] = useState({})
   // const [loadingMore, setLoadingMore] = useState(false)
 
   useEffect(() => {
@@ -50,6 +72,16 @@ const HomePage = ({ covid, indo }) => {
           })
   },[page])
 
+  useEffect(() => {
+    getCovidData(countryIso)
+      .then((data) => {
+        setRandomCountry(data)
+      })
+  }, [countryIso])
+
+  const handleSelectCountry = (e) => {
+    setCountryIso(e.target.value)
+  }
 
     return (
         <Layout>
@@ -74,20 +106,27 @@ const HomePage = ({ covid, indo }) => {
                 </div>
             </CardGlobal>
 
+              <ChooseCountry>
+                <h2>Choose Country</h2>
+                <Select 
+                  data={country.countries}
+                  onChange={handleSelectCountry} 
+                />
+              </ChooseCountry>
+
             <CardGlobal>
-                <h1>Indonesia Info</h1>
                 <div>
                   <Card 
                     title="Confirmed"
-                    value={indo.confirmed.value} 
+                    value={randomCountry.confirmed && randomCountry.confirmed.value || 0} 
                   />
                   <Card 
                     title="Recovered"
-                    value={indo.recovered.value} 
+                    value={randomCountry.recovered && randomCountry.recovered.value || 0} 
                   />
                   <Card 
                     title="Death"
-                    value={indo.deaths.value} 
+                    value={randomCountry.deaths && randomCountry.deaths.value || 0} 
                   />
                 </div>
             </CardGlobal>
@@ -101,11 +140,11 @@ const HomePage = ({ covid, indo }) => {
 HomePage.getInitialProps = async () => {
     const resGlobal = await fetch('https://covid19.mathdro.id/api')
     const dataGlobal = await resGlobal.json()
-    const resIndo = await fetch('https://covid19.mathdro.id/api/countries/IDN')
-    const dataIndo = await resIndo.json()
+    const resCountry = await fetch('https://covid19.mathdro.id/api/countries')
+    const listCountry = await resCountry.json()
     return {
         covid: dataGlobal,
-        indo: dataIndo
+        country: listCountry
     }
 }
 

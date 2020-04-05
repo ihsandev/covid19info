@@ -26,3 +26,16 @@ export const getNewsCovid = (page) => {
         .catch((err) => reject(err))
     })
 }
+
+export const getCovidData = (iso) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`https://covid19.mathdro.id/api/countries/${iso}`)
+            .then((res) => {
+                if(res.status === 200) {
+                    const data = res.data
+                    resolve(data)
+                }
+            })
+            .catch((err) => reject(err))
+    })
+}
