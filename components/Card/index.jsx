@@ -23,9 +23,9 @@ const Caption = styled.span`
     left: 1rem;
     background-color: #fff;
     padding: 0px 6px;
-    ${({status}) => status === 'Confirmed' && `color: orange`};
-    ${({status}) => status === 'Recovered' && `color: green`};
-    ${({status}) => status === 'Death' && `color: red`};
+    ${({status}) => status === 'Terkonfirmasi' && `color: orange`};
+    ${({status}) => status === 'Sembuh' && `color: green`};
+    ${({status}) => status === 'Meninggal' && `color: red`};
     border-radius: 8px;
 `
 
