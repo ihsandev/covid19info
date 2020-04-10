@@ -61,7 +61,6 @@ const HomePage = ({ covid, country }) => {
   const [newsData, setNewsData] = useState([])
   const [page, setPage] = useState(1)
   const [countryIso, setCountryIso] = useState('IDN')
-  const [countryName, setCountryName] = useState('Indonesia')
   const [randomCountry, setRandomCountry] = useState({})
   // const [loadingMore, setLoadingMore] = useState(false)
 
@@ -86,21 +85,21 @@ const HomePage = ({ covid, country }) => {
     return (
         <Layout>
             <Head>
-                <title>Homepage Corona</title>
+                <title>Info Corona</title>
             </Head>
             <CardGlobal>
                 <h1>Global Info</h1>
                 <div>
                     <Card 
-                      title="Confirmed"
+                      title="Terkonfirmasi"
                       value={covid.confirmed.value} 
                     />
                     <Card 
-                      title="Recovered"
+                      title="Sembuh"
                       value={covid.recovered.value} 
                     />
                     <Card 
-                      title="Death"
+                      title="Meninggal"
                       value={covid.deaths.value} 
                     />
                 </div>
@@ -117,15 +116,15 @@ const HomePage = ({ covid, country }) => {
             <CardGlobal>
                 <div>
                   <Card 
-                    title="Confirmed"
+                    title="Terkonfirmasi"
                     value={randomCountry.confirmed && randomCountry.confirmed.value || 0} 
                   />
                   <Card 
-                    title="Recovered"
+                    title="Sembuh"
                     value={randomCountry.recovered && randomCountry.recovered.value || 0} 
                   />
                   <Card 
-                    title="Death"
+                    title="Meninggal"
                     value={randomCountry.deaths && randomCountry.deaths.value || 0} 
                   />
                 </div>

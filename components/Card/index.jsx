@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const CardStyle = styled.div`
     background-color: #fff;
     border: 1px solid;
-    ${({status}) => status === 'Confirmed' && `border-color: orange`};
-    ${({status}) => status === 'Recovered' && `border-color: green`};
-    ${({status}) => status === 'Death' && `border-color: red`};
+    ${({status}) => status === 'Terkonfirmasi' && `border-color: orange`};
+    ${({status}) => status === 'Sembuh' && `border-color: green`};
+    ${({status}) => status === 'Meninggal' && `border-color: red`};
     border-radius: 8px;
     padding: 15px 10px;
     box-sizing: border-box;
